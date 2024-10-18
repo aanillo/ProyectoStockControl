@@ -21,6 +21,23 @@ public class ProveedorRepository {
         }
         return proveedorReturn;
     }
-    public List<Proveedor>totalProveedores()
+    public List<Proveedor>totalProveedores() {
+        return proveedores;
+    }
+    public Proveedor insertProveedor(Proveedor p){
+        proveedores.add(p);
+        return get(p.getId());
+    }
+    public boolean deleteProveedor(Long id) {
+        for (Proveedor p : proveedores) {
+            if (p.getId()==id) {
+                proveedores.remove(p);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+
 }
 

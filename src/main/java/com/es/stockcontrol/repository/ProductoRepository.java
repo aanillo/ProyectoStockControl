@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProductoRepository {
 
-    List<Producto> bbddProducto;
+    private List<Producto> bbddProducto;
 
     public ProductoRepository(){
         bbddProducto = new ArrayList<>();
