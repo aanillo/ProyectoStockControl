@@ -13,7 +13,7 @@ public class Proveedor {
     private String nombre;
     @Column(name = "direccion",nullable = false)
     private String direccion;
-    @OneToMany(mappedBy = "proveedor")
+    @OneToMany(mappedBy = "proveedor",fetch = FetchType.LAZY)
     private List<Producto> productos;
 
     public Proveedor() {

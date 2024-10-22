@@ -16,14 +16,14 @@ public class UserRepository {
     public User get(String password){
         User userReturn = null;
         for (User u : usuarios) {
-            if (u.getPasword().equals(password){
+            if (u.getPasword().equals(password)){
                 userReturn = u;
                 break;
             }
         }
         return userReturn;
     }
-    public List<User>totaUsuarios() {
+    public List<User>totalUsuarios() {
         return usuarios;
     }
     public User insertUser(User u){
