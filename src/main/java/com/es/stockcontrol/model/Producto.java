@@ -2,14 +2,14 @@ package com.es.stockcontrol.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "producto")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @Column(name = "categoria", length = 10)
     private String categoria;
@@ -28,7 +28,7 @@ public class Producto {
 
     @Column(name = "fecha_alta", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha_alta;
+    private LocalDate fecha_alta;
 
     @ManyToOne
     @JoinColumn(name = "proveedor_id")
@@ -38,7 +38,7 @@ public class Producto {
 
     }
 
-    public Producto(Long id, String categoria, String nombre, String descripcion, float precio_sin_iva, float precion_con_iva, Date fecha_alta, Proveedor proveedor) {
+    public Producto(String id, String categoria, String nombre, String descripcion, float precio_sin_iva, float precion_con_iva, LocalDate fecha_alta, Proveedor proveedor) {
         this.id = id;
         this.categoria = categoria;
         this.nombre = nombre;
@@ -49,11 +49,29 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
-    public Long getId() {
+    public Producto(String id, String categoria, String nombre, String descripcion, float precio_sin_iva, float precion_con_iva, LocalDate fecha_alta) {
+        this.id = id;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio_sin_iva = precio_sin_iva;
+        this.precion_con_iva = precion_con_iva;
+        this.fecha_alta = fecha_alta;
+    }
+
+
+    public Producto(String categoria, String nombre, float precio_sin_iva, String descripcion, String nombreProveedor, String direccionProveedor) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.precio_sin_iva = precio_sin_iva;
+        this.descripcion = descripcion;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -97,11 +115,11 @@ public class Producto {
         this.precion_con_iva = precion_con_iva;
     }
 
-    public Date getFecha_alta() {
+    public LocalDate getFecha_alta() {
         return fecha_alta;
     }
 
-    public void setFecha_alta(Date fecha_alta) {
+    public void setFecha_alta(LocalDate fecha_alta) {
         this.fecha_alta = fecha_alta;
     }
 

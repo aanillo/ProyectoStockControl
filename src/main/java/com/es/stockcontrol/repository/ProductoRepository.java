@@ -24,16 +24,7 @@ public class ProductoRepository {
         return producto;
     }
 
-    public Producto get(Long id){
-        Producto producto = null;
 
-        for(Producto p : bbddProducto){
-            if(p.getId().equals(id)){
-                producto = p;
-            }
-        }
-        return producto;
-    }
 
     public Producto insert(Producto p) {
         bbddProducto.add(p);
@@ -49,9 +40,9 @@ public class ProductoRepository {
         return true;
     }
 
-    public Producto modify(String nombre, String nuevoNombre){
+    public Producto modify(String nuevoNombre){
         for(Producto p : bbddProducto){
-            if(p.getNombre().equals(nombre)){
+            if(p.getNombre().equals(nuevoNombre)){
                 p.setNombre(nuevoNombre);
                 return p;
             }
@@ -59,5 +50,7 @@ public class ProductoRepository {
         return null;
     }
 
-
+    public List<Producto> getProductos() {
+        return bbddProducto;
+    }
 }

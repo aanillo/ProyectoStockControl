@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductoControllerAPI {
 
-    RespuestaHTTP<Producto> altaProducto(String idProducto, String nombreProducto, String precioSinIva, String descripcionProducto, String nombreProveedor, String direccionProveedor);
+    RespuestaHTTP<Producto> altaProducto(Producto p);
     RespuestaHTTP<Producto> bajaProducto(String id);
     RespuestaHTTP<Producto> modificarNombreProducto(String id, String nuevoNombre);
     RespuestaHTTP<Producto> modificarStockProducto(String id, String nuevoStock);
