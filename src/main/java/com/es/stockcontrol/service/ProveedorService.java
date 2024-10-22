@@ -20,11 +20,10 @@ public class ProveedorService {
         return null;
     }
     public Proveedor insertProveedor (Proveedor p){
-
-        if (p.getNombre()!= null && !p.getNombre().isEmpty() && p.getNombre().length() <= longitud && direccion != null && !direccion.isEmpty()) {
-
-
+        Proveedor nuevoProveedor
+        if (p.getNombre()!= null && !p.getNombre().isEmpty() && p.getDireccion()!= null && !p.getDireccion().isEmpty()) {
+            =new Proveedor();
         }
-
+        return nuevoProveedor();
     }
 }

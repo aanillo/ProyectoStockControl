@@ -169,7 +169,7 @@ public class AppStockControl {
         System.out.print("nombre: ");
         String nombreProducto = scan.nextLine();
         System.out.print("precio sin IVA: ");
-        String precioSinIva = scan.nextLine();
+        float precioSinIva = Float.parseFloat(scan.nextLine());
         System.out.print("descripcion: ");
         String descripcionProducto = scan.nextLine();
 
@@ -179,7 +179,9 @@ public class AppStockControl {
         System.out.print("direccion: ");
         String direccionProveedor = scan.nextLine();
 
-        RespuestaHTTP<Producto> respuesta = productoController.altaProducto(categoriaProducto, nombreProducto, precioSinIva, descripcionProducto, nombreProveedor, direccionProveedor);
+        Producto producto = new Producto(categoriaProducto, nombreProducto, precioSinIva, descripcionProducto, nombreProveedor, direccionProveedor);
+
+        RespuestaHTTP<Producto> respuesta = productoController.altaProducto(producto);
 
         if (respuesta != null && respuesta.getCodigo() == 200) {
             System.out.printf("PRODUCTO INSERTADO CORRECTAMENTE\n%s", respuesta.getObj().toString());

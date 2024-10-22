@@ -1,6 +1,6 @@
 package com.es.stockcontrol.repository;
 
-import com.es.stockcontrol.model.Proveedor;
+import com.es.stockcontrol.model.Producto;
 import com.es.stockcontrol.model.User;
 
 import java.util.ArrayList;
@@ -8,35 +8,24 @@ import java.util.List;
 
 public class UserRepository {
 
-    private List<User> usuarios;
+    List<User> bbddUsers;
 
     public UserRepository(){
-        usuarios = new ArrayList<>();
+        bbddUsers = new ArrayList<>();
     }
-    public User get(String password){
-        User userReturn = null;
-        for (User u : usuarios) {
-            if (u.getPasword().equals(password)){
-                userReturn = u;
-                break;
+
+    public User login(String nombre, String password) {
+        User user = null;
+
+        for(User u : bbddUsers){
+            if(u.getNombre_usuario().equals(nombre) && u.getPasword().equals(password)){
+                user = u;
             }
         }
-        return userReturn;
+        return user;
     }
-    public List<User>totalUsuarios() {
-        return usuarios;
-    }
-    public User insertUser(User u){
-        usuarios.add(u);
-        return get(u.getPasword());
-    }
-    public boolean deleteUser(String password) {
-        for (User u : usuarios) {
-            if (u.getPasword().equals(password)) {
-                usuarios.remove(u);
-                return true;
-            }
-        }
-        return false;
+
+    public List<User> getAllUsers() {
+        return bbddUsers;
     }
 }
