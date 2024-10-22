@@ -3,6 +3,8 @@ package com.es.stockcontrol.service;
 import com.es.stockcontrol.model.Proveedor;
 import com.es.stockcontrol.repository.ProveedorRepository;
 
+import java.util.List;
+
 public class ProveedorService {
     ProveedorRepository repository;
 
@@ -20,10 +22,21 @@ public class ProveedorService {
         return null;
     }
     public Proveedor insertProveedor (Proveedor p){
-        Proveedor nuevoProveedor
-        if (p.getNombre()!= null && !p.getNombre().isEmpty() && p.getDireccion()!= null && !p.getDireccion().isEmpty()) {
-            =new Proveedor();
+        String nombre = p.getNombre();
+        String direccion=p.getDireccion();
+        if (p.getNombre()== null && p.getNombre().isEmpty() && p.getDireccion()== null && p.getDireccion().isEmpty()) {
+            return null;
         }
-        return nuevoProveedor();
+        Proveedor nuevoProveedor= new Proveedor(nombre,direccion);
+        p=nuevoProveedor;
+        return nuevoProveedor;
+
+    }
+    public List<Proveedor> totalProveedores(){
+        List<Proveedor>totalProveedores =repository.totalProveedores();
+        for(Proveedor p: totalProveedores){
+            return (List<Proveedor>) p;
+        }
+        return null;
     }
 }
