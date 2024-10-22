@@ -50,7 +50,18 @@ public class ProductoRepository {
         return null;
     }
 
+    public Producto modifyStock(int nuevoStock){
+        for(Producto p : bbddProducto){
+            if(p.getStock() >= 0){
+                p.setStock(nuevoStock);
+                return p;
+            }
+        }
+        return null;
+    }
+
     public List<Producto> getProductos() {
         return bbddProducto;
     }
+
 }

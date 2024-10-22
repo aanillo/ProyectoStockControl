@@ -76,11 +76,27 @@ public class ProductoController implements ProductoControllerAPI {
 
     @Override
     public RespuestaHTTP<List<Producto>> getProductosConStock() {
-        return null;
+        try {
+            List<Producto> productosConStock = service.getProductosConStock();
+            return productosConStock != null ?
+                    new RespuestaHTTP<>(200, "Productos con stock ") :
+                    new RespuestaHTTP<>(400, "Productos no encontrados");
+
+        } catch (Exception e){
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 
     @Override
     public RespuestaHTTP<List<Producto>> getProductosSinStock() {
-        return null;
+        try {
+            List<Producto> productosSinStock = service.getProductosSinStock();
+            return productosSinStock != null ?
+                    new RespuestaHTTP<>(200, "Productos sin stock") :
+                    new RespuestaHTTP<>(400, "Productos no encontrados");
+
+        } catch (Exception e){
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 }

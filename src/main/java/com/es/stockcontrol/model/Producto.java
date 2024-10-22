@@ -167,4 +167,5 @@ public class Producto {
                 ", proveedor=" + proveedor +
                 '}';
     }
-}
+
+    }

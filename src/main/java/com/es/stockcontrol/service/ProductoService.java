@@ -2,8 +2,11 @@ package com.es.stockcontrol.service;
 
 import com.es.stockcontrol.model.Producto;
 import com.es.stockcontrol.repository.ProductoRepository;
+import org.hibernate.procedure.ProcedureOutputs;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductoService {
 
@@ -45,9 +48,14 @@ public class ProductoService {
             return null;
         }
 
+        int stock = p.getStock();
+        if(stock == 0){
+            return null;
+        }
+
         String descripcion = p.getDescripcion();
 
-        Producto producto = new Producto(strId, categoria, nombre, descripcion, precioSinIva, precioConIva, fechaHoy);
+        Producto producto = new Producto(strId, categoria, nombre, descripcion, stock, precioSinIva, precioConIva, fechaHoy);
         return repository.insert(producto);
     }
 
@@ -91,7 +99,6 @@ public class ProductoService {
 
 
     public boolean modifyStock(String id, String nuevoStock) {
-        /*
         if (id == null || id.isEmpty()) {
             return false;
         }
@@ -107,13 +114,95 @@ public class ProductoService {
         }
 
         int stock = productoExistente.getStock();
-        int newStock = Integer.parseInt(nuevoStock.toString());
+        int newStock = Integer.parseInt(nuevoStock);
         int stockTotal = stock + newStock;
         productoExistente.setStock(stockTotal);
-        String
-        repository.modify(stockTotal);
+        repository.modifyStock(stockTotal);
         return true;
-         */
-        return false;
+    }
+
+
+
+    public Producto getConStock(String id, String categoria, String nombre, String descripcion, int stock, float precioSinIva, float precioConIva, LocalDate fechaHoy){
+        if(id.isEmpty() || id == null){
+            return null;
+        }
+
+        if(categoria.length() > 50 || categoria.isEmpty() || categoria == null){
+            return null;
+        }
+
+        if(nombre.length() > 50 || nombre.isEmpty() || nombre == null) {
+            return null;
+        }
+
+
+        if(precioSinIva == 0) {
+            return null;
+        }
+
+        float iva = 0.21f;
+        precioConIva = precioSinIva * (1 + iva);
+
+
+        if(stock == 0){
+            return null;
+        }
+
+        fechaHoy = LocalDate.now();
+
+        Producto producto = new Producto(id, categoria, nombre, descripcion, stock, precioSinIva, precioConIva, fechaHoy);
+        return repository.insert(producto);
+    }
+
+    public Producto getSinStock(String id, String categoria, String nombre, String descripcion, float precioSinIva, float precioConIva, LocalDate fechaHoy){
+        if(id.isEmpty() || id == null){
+            return null;
+        }
+
+        if(categoria.length() > 50 || categoria.isEmpty() || categoria == null){
+            return null;
+        }
+
+        if(nombre.length() > 50 || nombre.isEmpty() || nombre == null) {
+            return null;
+        }
+
+
+        if(precioSinIva == 0) {
+            return null;
+        }
+
+        float iva = 0.21f;
+        precioConIva = precioSinIva * (1 + iva);
+
+        fechaHoy = LocalDate.now();
+
+        Producto producto = new Producto(id, categoria, nombre, descripcion, precioSinIva, precioConIva, fechaHoy);
+        return repository.insert(producto);
+    }
+
+    public List<Producto> getProductosConStock() {
+        List<Producto> lista = repository.getProductos();
+        List<Producto> listaConStock = new ArrayList<>();
+
+        for(Producto p: lista){
+            if(p.getStock() >= 0){
+                listaConStock.add(p);
+            }
+        }
+        return listaConStock;
+    }
+
+    public List<Producto> getProductosSinStock() {
+        List<Producto> lista = repository.getProductos();
+        List<Producto> listaSinStock = new ArrayList<>();
+
+        for(Producto p: lista){
+            if(p.getStock() == 0){
+                listaSinStock.add(p);
+            }
+        }
+        return listaSinStock;
     }
 }
