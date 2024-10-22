@@ -30,6 +30,9 @@ public class Producto {
     @Temporal(TemporalType.DATE)
     private LocalDate fecha_alta;
 
+    @Column(name = "stock")
+    private int stock;
+
     @ManyToOne
     @JoinColumn(name = "proveedor_id")
     Proveedor proveedor;
