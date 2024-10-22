@@ -63,7 +63,15 @@ public class ProductoController implements ProductoControllerAPI {
 
     @Override
     public RespuestaHTTP<Producto> getProducto(String id) {
-        return null;
+        try {
+            Producto productoEncontrado = service.get(id);
+            return productoEncontrado != null ?
+                    new RespuestaHTTP<>(200, "Producto " + id + " encontrado") :
+                    new RespuestaHTTP<>(400, "Producto no obtenido");
+
+        } catch (Exception e){
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 
     @Override

@@ -51,42 +51,12 @@ public class ProductoService {
         return repository.insert(producto);
     }
 
-    public Producto get(Producto p) {
-        String id = p.getId();
-
+    public Producto get(String id) {
         if(id == null || id.isEmpty()){
             return null;
         }
 
-        String categoria = p.getCategoria();
-        if(categoria.length() > 50 || categoria.isEmpty() || categoria == null){
-            return null;
-        }
-
-        String nombre = p.getNombre();
-        if(nombre.length() > 50 || nombre.isEmpty() || nombre == null) {
-            return null;
-        }
-
-        float precioSinIva = p.getPrecio_sin_iva();
-        if(precioSinIva == 0) {
-            return null;
-        }
-
-        float precioConIva = p.getPrecion_con_iva();
-        if(precioConIva == 0) {
-            return null;
-        }
-
-        LocalDate fechaHoy = LocalDate.now();
-        if(!p.getFecha_alta().equals(fechaHoy)) {
-            return null;
-        }
-
-        String descripcion = p.getDescripcion();
-
-        Producto producto = new Producto(id, categoria, nombre, descripcion, precioSinIva, precioConIva, fechaHoy);
-        return repository.get(p.getId());
+        return repository.get(id);
     }
 
     public boolean delete(String id){
@@ -99,23 +69,25 @@ public class ProductoService {
     }
 
 
-    public Producto modifyName(String id, String nuevoNombre) {
+    public boolean modifyName(String id, String nuevoNombre) {
         if (id == null || id.isEmpty()) {
-            return null;
+            return false;
         }
 
         if (nuevoNombre == null || nuevoNombre.isEmpty() || nuevoNombre.length() > 50) {
-            return null;
+            return false;
         }
 
         Producto productoExistente = repository.get(id);
 
         if (productoExistente == null) {
-            return null;
+            return false;
         }
 
         productoExistente.setNombre(nuevoNombre);
         repository.modify(nuevoNombre);
-        return productoExistente;
+        return true;
     }
+
+
 }
