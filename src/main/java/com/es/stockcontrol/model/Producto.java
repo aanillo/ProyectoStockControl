@@ -70,6 +70,17 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public Producto(String id, String categoria, String nombre, String descripcion, int stock, float precio_sin_iva, float precion_con_iva, LocalDate fecha_alta) {
+        this.id = id;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.precio_sin_iva = precio_sin_iva;
+        this.precion_con_iva = precion_con_iva;
+        this.fecha_alta = fecha_alta;
+    }
+
     public String getId() {
         return id;
     }
@@ -134,16 +145,25 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio_sin_iva=" + precio_sin_iva +
                 ", precion_con_iva=" + precion_con_iva +
                 ", fecha_alta=" + fecha_alta +
+                ", stock=" + stock +
                 ", proveedor=" + proveedor +
                 '}';
     }

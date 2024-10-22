@@ -90,4 +90,30 @@ public class ProductoService {
     }
 
 
+    public boolean modifyStock(String id, String nuevoStock) {
+        /*
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
+
+        if (nuevoStock == null || nuevoStock.isEmpty()) {
+            return false;
+        }
+
+        Producto productoExistente = repository.get(id);
+
+        if (productoExistente == null) {
+            return false;
+        }
+
+        int stock = productoExistente.getStock();
+        int newStock = Integer.parseInt(nuevoStock.toString());
+        int stockTotal = stock + newStock;
+        productoExistente.setStock(stockTotal);
+        String
+        repository.modify(stockTotal);
+        return true;
+         */
+        return false;
+    }
 }
