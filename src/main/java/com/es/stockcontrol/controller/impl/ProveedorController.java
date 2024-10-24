@@ -21,9 +21,7 @@ public class ProveedorController implements ProveedorControllerAPI {
 
     @Override
     public RespuestaHTTP<List<Proveedor>> getTodosProveedores() {
-        try{
-            List<Proveedor> lista= service.totalProveedores();
-        }
+
         return null;
     }
 }
