@@ -34,9 +34,7 @@ public class ProveedorService {
     }
     public List<Proveedor> totalProveedores(){
         List<Proveedor>totalProveedores =repository.totalProveedores();
-        for(Proveedor p: totalProveedores){
-            return (List<Proveedor>) p;
-        }
-        return null;
+
+        return totalProveedores;
     }
 }
