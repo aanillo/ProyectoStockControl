@@ -41,13 +41,13 @@ public class Producto {
 
     }
 
-    public Producto(String id, String categoria, String nombre, String descripcion, float precio_sin_iva, float precion_con_iva, LocalDate fecha_alta, Proveedor proveedor) {
+    public Producto(String id, String categoria, String nombre, String descripcion, float precio_sin_iva, int stock, LocalDate fecha_alta, Proveedor proveedor) {
         this.id = id;
         this.categoria = categoria;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio_sin_iva = precio_sin_iva;
-        this.precion_con_iva = precion_con_iva;
+        this.stock = stock;
         this.fecha_alta = fecha_alta;
         this.proveedor = proveedor;
     }
@@ -80,6 +80,7 @@ public class Producto {
         this.precion_con_iva = precion_con_iva;
         this.fecha_alta = fecha_alta;
     }
+
 
     public String getId() {
         return id;
