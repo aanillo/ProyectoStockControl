@@ -21,10 +21,10 @@ public class ProductoController implements ProductoControllerAPI {
             // TODO: Implementar la logica de insertUserEmail
             Producto productoInsertado = service.insert(p);
             return productoInsertado != null ?
-                    new RespuestaHTTP(200, "Producto "+ productoInsertado.getNombre() +" insertado", productoInsertado) :
-                    new RespuestaHTTP(400, "Producto NO insertado");
+                    new RespuestaHTTP<>(200, "Producto "+ productoInsertado.getNombre() +" insertado", productoInsertado) :
+                    new RespuestaHTTP<>(400, "Producto NO insertado");
         } catch (Exception e) {
-            return new RespuestaHTTP(500, "Fatal internal Error");
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
         }
     }
 
@@ -35,11 +35,11 @@ public class ProductoController implements ProductoControllerAPI {
         try {
             // TODO: Implementar la logica de deleteUserEmail
             return service.delete(id) ?
-                    new RespuestaHTTP(200, "Producto "+ id +" eliminado") :
-                    new RespuestaHTTP(400, "Usuario NO eliminado");
+                    new RespuestaHTTP<>(200, "Producto "+ id +" eliminado") :
+                    new RespuestaHTTP<>(400, "Usuario NO eliminado");
 
         } catch (Exception e) {
-            return new RespuestaHTTP(500, "Fatal internal Error");
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
         }
     }
 
@@ -51,14 +51,21 @@ public class ProductoController implements ProductoControllerAPI {
                     new RespuestaHTTP<>(400, "Nombre no modificado");
 
         } catch (Exception e) {
-            return new RespuestaHTTP(500, "Fatal internal Error");
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
         }
 
     }
 
     @Override
     public RespuestaHTTP<Producto> modificarStockProducto(String id, String nuevoStock) {
-        return null;
+        try {
+            return service.modifyStock(id, nuevoStock) ?
+                    new RespuestaHTTP<>(200, "Nombre " + nuevoStock + " modificado") :
+                    new RespuestaHTTP<>(400, "Nombre no modificado");
+
+        } catch (Exception e) {
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 
     @Override
@@ -76,11 +83,27 @@ public class ProductoController implements ProductoControllerAPI {
 
     @Override
     public RespuestaHTTP<List<Producto>> getProductosConStock() {
-        return null;
+        try {
+            List<Producto> productosConStock = service.getProductosConStock();
+            return productosConStock != null ?
+                    new RespuestaHTTP<>(200, "Productos con stock ") :
+                    new RespuestaHTTP<>(400, "Productos no encontrados");
+
+        } catch (Exception e){
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 
     @Override
     public RespuestaHTTP<List<Producto>> getProductosSinStock() {
-        return null;
+        try {
+            List<Producto> productosSinStock = service.getProductosSinStock();
+            return productosSinStock != null ?
+                    new RespuestaHTTP<>(200, "Productos sin stock") :
+                    new RespuestaHTTP<>(400, "Productos no encontrados");
+
+        } catch (Exception e){
+            return new RespuestaHTTP<>(500, "Fatal internal Error");
+        }
     }
 }
