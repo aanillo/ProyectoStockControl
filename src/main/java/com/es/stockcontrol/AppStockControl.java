@@ -37,13 +37,12 @@ public class AppStockControl {
                 e.printStackTrace();
             }
 
-            System.out.println("""
-                    ******************************************************
-                    ****    Bienvenid@ a StockControl               ******
-                    ******************************************************
-                                    
-                    Introduzca su usuario y contrasena para continuar (0 para salir)
-                    """);
+            System.out.println("******************************************************\n" +
+                    "****    Bienvenid@ a StockControl               ******\n" +
+                    "******************************************************\n" +
+                    "\nIntroduzca su usuario y contraseña para continuar (0 para salir)\n");
+
+
             System.out.print("user: ");
             String userInput = scan.nextLine();
 
@@ -95,22 +94,20 @@ public class AppStockControl {
 
         ProveedorController proveedorController = new ProveedorController();
         do {
-            System.out.println("""
-                    ******************************************************
-                    ****            APP STOCK CONTROL               ******
-                    ******************************************************
-                                    
-                    1. Alta producto
-                    2. Baja producto
-                    3. Modificar nombre producto
-                    4. Modificar stock producto
-                    5. Get producto por id
-                    6. Get productos con stock
-                    7. Get productos sin stock
-                    8. Get proveedores de un producto
-                    9. Get todos los proveedores
-                    0. Salir
-                    """);
+            System.out.println("******************************************************\n" +
+                    "****            APP STOCK CONTROL               ******\n" +
+                    "******************************************************\n" +
+                    "\n" +
+                    "1. Alta producto\n" +
+                    "2. Baja producto\n" +
+                    "3. Modificar nombre producto\n" +
+                    "4. Modificar stock producto\n" +
+                    "5. Get producto por id\n" +
+                    "6. Get productos con stock\n" +
+                    "7. Get productos sin stock\n" +
+                    "8. Get proveedores de un producto\n" +
+                    "9. Get todos los proveedores\n" +
+                    "0. Salir\n");
             System.out.print("Seleccione una opción: ");
             opc = scan.nextLine();
 

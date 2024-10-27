@@ -8,7 +8,7 @@ import java.util.List;
 public class UserService {
     private UserRepository repository;
 
-    // Constructor
+
     public UserService() {
         this.repository = new UserRepository();
     }
@@ -18,19 +18,19 @@ public class UserService {
         String username = u.getNombre_usuario();
         String password = u.getPasword();
 
-        // Validar que el nombre de usuario y la contraseña no sean nulos ni vacíos
+
         if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
             return null;
         }
 
-        // Comprobar si el usuario ya existe en la "base de datos" (bbddUsers)
+
         for (User existingUser : repository.getAllUsers()) {
             if (existingUser.getNombre_usuario().equals(username)) {
                 return null;
             }
         }
 
-        // Añadir el nuevo usuario al repositorio
+
         repository.getAllUsers().add(u);
         return u;
     }
@@ -46,7 +46,7 @@ public class UserService {
             return null;  // Si alguno de los campos es inválido, retornar nulo
         }
 
-        // Llamar al método login del repositorio
+
         return repository.login(nombre_usuario, password);
     }
 
@@ -56,7 +56,7 @@ public class UserService {
             return false;
         }
 
-        // Buscar al usuario en la lista y eliminarlo si existe
+
         List<User> users = repository.getAllUsers();
         for (User user : users) {
             if (user.getNombre_usuario().equals(nombre_usuario)) {
@@ -74,11 +74,11 @@ public class UserService {
             return false;
         }
 
-        // Buscar al usuario por su nombre de usuario
+
         List<User> users = repository.getAllUsers();
         for (User user : users) {
             if (user.getNombre_usuario().equals(nombre_usuario)) {
-                // Actualizar la contraseña
+
                 user.setPasword(nuevaPassword);
                 return true;
             }
